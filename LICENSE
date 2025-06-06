@@ -1,0 +1,90 @@
+Copyright (c) 2025 Nyanko Team  
+All rights reserved.
+
+Project: Nyanko.HTMLMailer  
+Repository: https://github.com/Nyakkon/html-email-sender  
+Created at: 02:17 PM, 06/06/2025 (MM/DD/YYYY) GMT+7  
+Last License Revision: 02:17 AM, 06/06/2025 (MM/DD/YYYY) GMT+7
+
+Nyanko.HTMLMailer is a proprietary utility tool developed and maintained by the **Nyanko Team**, with generous support from contributors in the developer community. While all community input is greatly appreciated, all intellectual property, distribution rights, and legal ownership of this project are solely retained by the **Nyanko Team**.
+
+This license applies to the entirety of the repository, including but not limited to:
+
+- Python scripts (`server.py`, interaction logic, internal SMTP handling)  
+- HTML email templates, configuration files, and multilingual language packs  
+- Documentation files (README, changelogs, usage instructions, contribution guides)  
+- Visual and media assets (icons, badges, example GIFs)  
+- Mock data, test logic, template selection workflows  
+
+---
+
+## 🚫 Restrictions
+
+Without explicit **written permission** from the **Nyanko Team**, you may **not**:
+
+- Reproduce, publish, or distribute the repository in full or in part  
+- Modify and rebrand the project under your own name  
+- Include it in any educational, commercial, or open-source bundle  
+- Provide it as a service or tool, paid or unpaid  
+- Integrate this project into monetized systems, platforms, or documentation
+
+Only the **Nyanko Team** (under the domain `wibu.me`) is permitted to:
+
+- Publish official versions, forks, or updates  
+- Commercialize any derivative work based on this project  
+- Enter into revenue-sharing agreements at their discretion
+
+---
+
+## 🔐 Legal Scope
+
+Any unauthorized use, including copying, selling, or republishing, may result in legal actions under applicable copyright and intellectual property laws.
+
+You are solely responsible for any consequences of misuse, including (but not limited to):
+
+- Spam distribution  
+- Credential leaks or SMTP abuse  
+- Email blacklisting or domain reputation damage  
+- System compromises due to modified code
+
+---
+
+## ✅ Contributing
+
+You may contribute via **pull requests directed to a separate branch**.  
+Forking, redistributing, or reuploading the project (modified or not) is **prohibited**.
+
+For large contributions, integrations, or localization partnerships, please reach out.
+
+---
+
+## 📘 Definitions
+
+- **Software**: All content and logic in this repository  
+- **Use**: Any form of interaction beyond reading — including running, modifying, or integrating  
+- **User**: Any individual accessing or modifying the Software  
+- **Commercial Use**: Any usage tied to direct or indirect revenue  
+- **Modification**: Any alteration of structure, logic, design, or UI elements
+
+---
+
+## ⚠ Disclaimer of Warranty
+
+This software is provided **"as is"**, without warranties of any kind — including fitness for purpose, email deliverability, or performance.  
+The **Nyanko Team** is not responsible for any losses or damage caused by the use or misuse of this tool.
+
+---
+
+## 📌 Termination & Jurisdiction
+
+This license is **perpetual**, **non-transferable**, and **irrevocable**, unless formally replaced by the **Nyanko Team**.  
+Violation of any term results in immediate termination of all usage rights.  
+Legal disputes will be governed by the jurisdiction of the violator's location or the place of breach — as determined solely by the **Nyanko Team**.
+
+---
+
+📩 For licensing, partnerships, or commercial requests, please contact:  
+**admin@wibu.me**
+
+**Nyanko Team**  
+Preserving lightweight innovation ✨

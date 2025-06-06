@@ -1,0 +1,1 @@
+test1@domain.com, test2.domain.com
