@@ -20,7 +20,7 @@ def read_language(lang_code="en"):
     lang = ConfigParser()
     with open(lang_path, "r", encoding="utf-8") as f:
         lang.read_file(f)
-    return lang["TRANSITION"]
+    return lang["TRANSLATE"]
 
 def read_emails(path="emails.txt"):
     if not os.path.exists(path):

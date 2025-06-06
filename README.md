@@ -66,12 +66,12 @@ display_name = Your Display Name 😎
 ## 🌍 Language File: `language/en.ini`
 
 ```ini
-[TRANSITION]
+[TRANSLATE]
 choose_template = 📝 Choose HTML template to send:
-choose_template_input = Enter the number of the HTML you want to use:
 enter_subject = 📌 Enter email subject:
 template_not_found = ⚠️ No HTML templates found in ./template/
 email_not_found = 📭 No recipient emails found.
+choose_template_input = Enter the number of the HTML you want to use:
 sending_start = 🚀 Starting to send email to {count} recipients...
 success = ✅ Successfully sent to: {email}
 failure = ❌ Failed to send to: {email} | Error: {error}
