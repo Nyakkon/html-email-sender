@@ -1,3 +1,5 @@
+import socks
+import socket
 import smtplib
 import os
 import re
@@ -32,6 +34,30 @@ def read_language(lang_code: str = "en") -> dict[str, str]:
         lang.read_file(configLanguage)
 
     return dict(lang["TRANSLATE"])
+
+
+def configure_proxy(config):
+    if config.has_section("PROXY") and config.getboolean("PROXY", "enabled", fallback=False):
+        proxy_host = config.get("PROXY", "host", fallback="")
+        proxy_port = config.get("PROXY", "port", fallback="")
+        proxy_type = config.get("PROXY", "type", fallback="socks5")
+
+        if not proxy_host.strip() or not proxy_port.strip():
+            print(language.get("proxy_skip_warning", "⚠️ Proxy enabled but host or port is empty. Skipping proxy setup."))
+            return
+
+        import socks
+        import socket
+
+        socks_type = {
+            "socks5": socks.SOCKS5,
+            "socks4": socks.SOCKS4,
+            "http": socks.HTTP
+        }.get(proxy_type.lower(), socks.SOCKS5)
+
+        socks.set_default_proxy(socks_type, proxy_host, int(proxy_port))
+        socket.socket = socks.socksocket
+
 
 def read_emails(path: str = "emails.txt") -> list[str]:
     if not os.path.exists(path):
@@ -82,6 +108,35 @@ def send_email(smtp_cfg: dict[str, str], receiver: str, subject: str, html_conte
 
     except Exception as exception:
         print(lang["failure"].format(email = receiver, error = exception))
+
+def main():
+    config = read_config()
+    smtp_cfg = dict(config["SMTP"])
+    lang_code = config["Language"]["lang"] if "Language" in config and "lang" in config["Language"] else "en"
+    lang = read_language(lang_code)
+
+    emails = read_emails()
+    if not emails:
+        print(lang["email_not_found"])
+        return
+
+    subject = input(lang["enter_subject"] + " ")
+
+    templates = list_html_templates()
+    if not templates:
+        print(lang["template_not_found"])
+        return
+
+    chosen_template = choose_template(templates, lang)
+    with open(os.path.join("template", chosen_template), "r", encoding="utf-8") as f:
+        html_content = f.read()
+
+    print("\n" + lang["sending_start"].format(count = len(emails)) + "\n")
+    for email in emails:
+        send_email(smtp_cfg, email, subject, html_content, lang)
+
+if __name__ == "__main__":
+    main()
 
 def main():
     config = read_config()
