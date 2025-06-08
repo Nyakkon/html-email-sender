@@ -33,7 +33,7 @@ Expected output: `Python 3.12.x`
 
 ```
 your_project/
-├── server.py               # Main script
+├── __main__.py               # Main script
 ├── config.ini              # SMTP & sender config
 ├── emails.txt              # Recipient emails
 ├── template/               # HTML templates
@@ -116,7 +116,7 @@ Use your own styles, text, emojis — whatever feels ✨ you.
 From the terminal / CMD:
 
 ```bash
-python server.py
+python __main__.py
 ```
 
 You'll be prompted to:
