@@ -139,17 +139,23 @@ Example: `template/welcome.html`
 
 ```
 📁 html-email-sender/
-├── maildesk_web.py          # Web UI (Flask)
-├── server.py                # CLI interface
-├── config.ini               # SMTP, Proxy, Language config
-├── emails.txt               # Recipients
-├── template/                # Email HTML templates
-├── language/                # Multi-language support
-├── web/                     # Frontend assets (HTML, CSS, JS)
-│   ├── index.html
+├── maildesk_web.py                   # Web UI (Flask)
+├── __main__.py                       # CLI interface
+├── config.ini                        # SMTP, Proxy, Language config
+├── emails.txt                        # Recipients
+├── template/                         # Email HTML templates
+├── language/                         # Multi-language support
+├── web/                              # Frontend assets (HTML, CSS, JS)
+│   ├── index.html                    # Web interface
 │   └── assets/
-├── log/                     # Mail logs
-└── setup-enviroment.bat     # Auto setup script (Windows)
+│       ├── css
+│       │   ├── maildesk-ui.css       # Styled with Tailwind CSS
+│       │   └── style.css             # Main Stylesheet
+│       └── js
+│           ├── main.js               # Main JS
+│           └── security.js           # # Blocks DevTools, right-click, and copy/paste (anti-inspect script)
+├── log/                              # Mail logs
+└── setup-enviroment.bat              # Auto setup script (Windows)
 ```
 
 ---
