@@ -40,8 +40,15 @@ if %errorlevel% NEQ 0 (
     del /f /q "%PYTHON_ZIP%" >> "%LOGFILE%" 2>&1
 
     echo [*] Updating PATH... >> "%LOGFILE%"
-    setx /M PATH "C:\Program Files\Python311;C:\Program Files\Python311\Scripts;%PATH%" >> "%LOGFILE%" 2>&1
-    set "PATH=C:\Program Files\Python311;C:\Program Files\Python311\Scripts;%PATH%"
+    echo [*] Checking PATH for existing Python installations... >> "%LOGFILE%"
+    echo %PATH% | findstr /i /c:"Program Files\\Python" >nul
+    if %errorlevel% NEQ 0 (
+        echo [*] No other Python in PATH, adding Python311... >> "%LOGFILE%"
+        setx /M PATH "C:\Program Files\Python311;C:\Program Files\Python311\Scripts;%PATH%" >> "%LOGFILE%" 2>&1
+        set "PATH=C:\Program Files\Python311;C:\Program Files\Python311\Scripts;%PATH%"
+    ) else (
+        echo [*] A Python version is already in PATH. Skipping update. >> "%LOGFILE%"
+    )
 )
 
 :: Verify Python again
