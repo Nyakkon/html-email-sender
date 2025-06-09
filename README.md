@@ -1,51 +1,70 @@
-# 💌 HTML Email Sender with Python
+# 💌 HTML Email Sender — MailDesk Web Edition
 
 ![SMTP Banner](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
 
-> Send stylish HTML emails 📧 with language support, customizable templates, and zero external libraries — just Python magic 🪄
+> Send stylish HTML emails via a modern Web UI or CLI interface.  
+> Supports HTML templates, proxy configuration, multi-language UI, and works with pure Python — no external mail services required.
 
 ---
 
 ## 📦 Requirements
 
-* OS: Windows / macOS / Linux
-* Python: **3.10+ recommended** (Works best with Python 3.11 or 3.12+)
-* No additional packages needed 🎉
+- OS: Windows / macOS / Linux
+- Python: **3.11+ recommended**
+- Flask (for Web UI only — installed automatically by setup script)
 
 ---
 
-## 🐍 Install Python
+## 🚀 How to Run (Web UI)
 
-1. Go to 👉 [https://www.python.org/downloads/](https://www.python.org/downloads/)
-2. Download Python **3.12** or newer
-3. During installation, **check “Add Python to PATH”**
-4. After installing, verify in terminal / CMD:
+### 🔹 Option 1: Auto setup (Windows only)
+
+```bat
+.\setup-enviroment.bat
+````
+
+This will:
+
+* Create a virtual environment
+* Install Flask
+* Launch the web interface
+
+Then open:
+👉 `http://127.0.0.1:5000`
+
+---
+
+### 🔹 Option 2: Manual setup (cross-platform)
 
 ```bash
-python --version
-```
+# Create and activate virtual environment
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
 
-Expected output: `Python 3.12.x`
+# Install Flask
+pip install flask
 
----
-
-## 📁 Project Structure
-
-```
-your_project/
-├── server.py               # Main script
-├── config.ini              # SMTP & sender config
-├── emails.txt              # Recipient emails
-├── template/               # HTML templates
-│   └── welcome.html
-└── language/               # Language UI files
-    ├── en.ini
-    └── vi.ini
+# Run the web interface
+python maildesk_web.py
 ```
 
 ---
 
-## 🔧 `config.ini` Example
+## 🖥️ What the Web UI Can Do
+
+* Input SMTP + Proxy + Language settings
+* Choose `.html` templates visually
+* Edit subject and preview HTML
+* Send to multiple recipients (one by one)
+* Real-time success/failure logging
+* Works in any modern browser
+
+---
+
+## ⚙️ Configuration (`config.ini`)
 
 ```ini
 [Language]
@@ -56,103 +75,116 @@ server = smtp.gmail.com
 port = 587
 username = your_email@gmail.com
 password = your_app_password
-display_name = Your Display Name 😎
+display_name = Your Name
+
+[PROXY]
+enabled = false
+type = socks5
+host = 127.0.0.1
+port = 9050
 ```
 
-> 🛡 Tip: Use **App Passwords** if you’re using Gmail. Never share your real password.
+> 🛡️ Tip: Use **App Passwords** for Gmail. Never share your real password.
 
 ---
 
-## 🌍 Language File: `language/en.ini`
+## 🌍 Language Files
+
+Example: `language/en.ini`
 
 ```ini
 [TRANSLATE]
 choose_template = 📝 Choose HTML template to send:
 enter_subject = 📌 Enter email subject:
-template_not_found = ⚠️ No HTML templates found in ./template/
-email_not_found = 📭 No recipient emails found.
-choose_template_input = Enter the number of the HTML you want to use:
-sending_start = 🚀 Starting to send email to {count} recipients...
-success = ✅ Successfully sent to: {email}
-failure = ❌ Failed to send to: {email} | Error: {error}
-invalid_choice = Invalid choice. Please try again.
+sending_start = 🚀 Starting to send...
+success = ✅ Sent to: {email}
+failure = ❌ Failed: {email} | Error: {error}
 ```
 
-> 🌐 Want to support more languages? Just create another `.ini` in `language/`.
+> 🌐 You can add new languages by creating `.ini` files in the `language/` folder.
 
 ---
 
-## 📧 `emails.txt` Format
+## 📧 Recipient List — `emails.txt`
 
 ```txt
-user1@example.com, user2@example.com, user3@example.com
+alice@example.com, bob@example.com, charlie@example.com
 ```
 
-* Emails are separated by `,` or `, `
-* No line breaks needed
+* Comma-separated
+* One line only
+* No need for newlines
 
 ---
 
-## ✨ HTML Template Example
+## 💌 HTML Template
 
-Inside `template/welcome.html`:
+Example: `template/welcome.html`
 
 ```html
 <!DOCTYPE html>
 <html>
   <body>
-    <h2 style="color: #00bfff;">Hey there!</h2>
-    <p>This email was auto-sent using Python 🚀</p>
+    <h2 style="color: #00bfff;">Hi there 👋</h2>
+    <p>This email was sent via Python & Flask 💌</p>
   </body>
 </html>
 ```
 
-Use your own styles, text, emojis — whatever feels ✨ you.
+> You can design your email with Canva or Figma, then export as `.html`.
 
 ---
 
-## 🚀 How to Run
+## 🛠 Project Structure
 
-From the terminal / CMD:
-
-```bash
-python server.py
+```
+📁 html-email-sender/
+├── maildesk_web.py                   # Web UI (Flask)
+├── __main__.py                       # CLI interface
+├── config.ini                        # SMTP, Proxy, Language config
+├── emails.txt                        # Recipients
+├── template/                         # Email HTML templates
+├── language/                         # Multi-language support
+├── web/                              # Frontend assets (HTML, CSS, JS)
+│   ├── index.html                    # Web interface
+│   └── assets/
+│       ├── css
+│       │   ├── maildesk-ui.css       # Styled with Tailwind CSS
+│       │   └── style.css             # Main Stylesheet
+│       └── js
+│           ├── main.js               # Main JS
+│           └── security.js           # # Blocks DevTools, right-click, and copy/paste (anti-inspect script)
+├── log/                              # Mail logs
+└── setup-enviroment.bat              # Auto setup script (Windows)
 ```
 
-You'll be prompted to:
+---
 
-1. Choose an HTML template
-2. Enter the subject
-3. The script reads `emails.txt` and sends one by one
-4. Success/failure logs shown live on screen
+## 🛡 How to Avoid Spam
+
+| ❌ Avoid                      | ✅ Do This                          |
+| ---------------------------- | ---------------------------------- |
+| Image-heavy HTML             | Use lightweight HTML               |
+| SHOUTY SUBJECTS!!!           | Write clean and calm subject lines |
+| Sending 1 email to many BCCs | Send one-by-one (already handled)  |
+| No sender name               | Use a friendly display name        |
+| Using unknown SMTP servers   | Use Gmail, Mailgun, SendGrid, etc. |
 
 ---
 
-## 🛡 How to Avoid Spam Folder
+## 🧙 Tips
 
-| ❌ Avoid                           | ✅ Recommended                             |
-| --------------------------------- | ----------------------------------------- |
-| Image-heavy or low-quality HTML   | Clean HTML with minimal styles            |
-| Shouty subjects (SALE!!!)         | Neutral subject lines (no all caps)       |
-| Bulk emails (1 email, many BCCs)  | Send emails **one-by-one** (already done) |
-| No sender display name            | Use meaningful display name               |
-| Missing SPF/DKIM on custom domain | Use proper SMTP (e.g., Gmail or SendGrid) |
-
-> 💡 Always test-send to yourself first!
+* 🧪 Test multiple `.html` templates for A/B performance
+* 🌐 Localize UI easily via `language/*.ini`
+* 🔐 Use proxy if SMTP access is restricted
+* ⚡ Fast and minimal, runs on any Python environment
 
 ---
 
-## 🧙‍♀️ Bonus Tips
+## ✨ Credits
 
-* 👀 Use Canva to design email → Export HTML
-* 🧪 Use multiple `.html` templates for A/B testing
-* 🌐 Easily add multi-language UI support (just edit `language/*.ini`)
-* 💼 Use professional SMTP like Mailgun, Brevo, SendGrid for production
+* Original CLI version by [Nyanko](https://github.com/Nyanko-Nya/html-email-sender)
+* Web UI, Proxy & modern UX by the community 💖
 
----
-
-## ✨ Made by Nyanko
-
-> Feel free to fork, remix, or vibe with it 🚀
-> [GitHub](https://github.com/Nyakkon) • [☕ Buy me boba](https://fe.wibu.me//img/QR.png)
+> [☕ Buy me a boba](https://fe.wibu.me//img/QR.png) • Happy coding!
 
